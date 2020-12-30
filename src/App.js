@@ -13,6 +13,7 @@ export default class App extends Component {
         <Person/>
         <Person/>
         <Person/>
+
       </div>
     );
   }
