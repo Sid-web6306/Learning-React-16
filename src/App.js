@@ -10,9 +10,9 @@ export default class App extends Component {
       <div className="App">
         <h1>hello , I m lerning  React-16</h1>
         <h3>This is so cool!!!</h3>
-        <Person/>
-        <Person/>
-        <Person/>
+        <Person name="Siddhant" age="23"/>
+        <Person name="Joe" age="40"/>
+        <Person name="Mili " age="12"/>
 
       </div>
     );
