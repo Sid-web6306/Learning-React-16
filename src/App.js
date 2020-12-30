@@ -11,6 +11,8 @@ export default class App extends Component {
         <h1>hello , I m lerning  React-16</h1>
         <h3>This is so cool!!!</h3>
         <Person/>
+        <Person/>
+        <Person/>
       </div>
     );
   }
