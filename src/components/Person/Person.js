@@ -1,5 +1,7 @@
 import React from 'react'
 
+
+//Stateless Component or Presentational Component or Dump Component
 export default function Person(props) {
     return (
         //in class use this.props
