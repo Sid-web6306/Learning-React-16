@@ -22,6 +22,15 @@ class App extends Component{
           ]
         });
       }
+
+
+      nameChangeHandler = (event) =>{
+        this.setState({
+          persons:[
+            {name:"Siddhant",age:23},{name:event.target.value, age:40},{name:"Mili",age:33}
+          ]
+        });
+      }
     //Another Way of writing a JSX
     // return React.createElement('div',{className: 'App'},React.createElement('h1',null, 'Hello, I m learning React-16.'));
     render(){
@@ -31,8 +40,8 @@ class App extends Component{
         <h3>This is so cool!!!</h3>
         {/* dont use paranthesis it will execute function immediatelty after rendering */}
         <button onClick={this.switchNameHandler.bind(this,"Siddhant jain")}>Switch Name</button>
-        <Person click={()=>this.switchNameHandler("Siddhant")} name={this.state.persons[0].name} age={this.state.persons[0].age}/>
-        <Person  name={this.state.persons[1].name} age={this.state.persons[1].age}>My Hobbies: Football</Person>
+        <Person  click={()=>this.switchNameHandler("Siddhant")} name={this.state.persons[0].name} age={this.state.persons[0].age}/>
+        <Person changes = {this.nameChangeHandler} name={this.state.persons[1].name} age={this.state.persons[1].age}>My Hobbies: Football</Person>
         <Person name={this.state.persons[2].name} age={this.state.persons[2].age}/>
 
       </div>
