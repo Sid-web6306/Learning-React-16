@@ -52,22 +52,26 @@ class App extends Component{
         margin: '10px',
         font:'inherit'
       }
+       let persons = (<button style={style} onClick={this.toggleChangeHandler}>Show Persons</button>);
+      if(this.state.showPersons){
+        persons = (
+        <div>
+          <button style={style} onClick ={this.toggleChangeHandler}>Hide Persons</button>
+          <Person  click={()=>this.switchNameHandler("Siddhant")} name={this.state.persons[0].name} age={this.state.persons[0].age}/>
+          <Person changes = {this.nameChangeHandler} name={this.state.persons[1].name} age={this.state.persons[1].age}>My Hobbies: Football</Person>
+          <Person name={this.state.persons[2].name} age={this.state.persons[2].age}/>
+        </div>
+        );
+      }
+
+
     return(
       <div className="App">
         <h1>Hello , I m lerning  React-16</h1>
         <h3>This is so cool!!!</h3>
         {/* dont use paranthesis it will execute function immediatelty after rendering */}
         <button style={style} onClick={this.switchNameHandler.bind(this,"Siddhant jain")}>Switch Name</button>
-        {this.state.showPersons ? <div>
-          <button style={style} onClick ={this.toggleChangeHandler}>Hide Persons</button>
-          <Person  click={()=>this.switchNameHandler("Siddhant")} name={this.state.persons[0].name} age={this.state.persons[0].age}/>
-          <Person changes = {this.nameChangeHandler} name={this.state.persons[1].name} age={this.state.persons[1].age}>My Hobbies: Football</Person>
-          <Person name={this.state.persons[2].name} age={this.state.persons[2].age}/>
-        </div>:<button style={style} onClick={this.toggleChangeHandler}>Show Persons</button>
-        //null -> renders nothing
-      }
-        
-
+        {persons}
       </div>
     );
     }
