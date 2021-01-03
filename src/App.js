@@ -12,13 +12,13 @@ class App extends Component{
       }
     
     
-      switchNameHandler = () => {
+      switchNameHandler = (newName) => {
         
         // console.log("Was clicked correctly");
         //DONT DIRECTLY CHANGE THE STATE OBJECT
         this.setState({
           persons:[
-            {name:"Siddhant",age:23},{name:"Rose", age:40},{name:"Monica",age:33}
+            {name:newName,age:23},{name:"Rose", age:40},{name:"Monica",age:33}
           ]
         });
       }
@@ -30,9 +30,9 @@ class App extends Component{
         <h1>Hello , I m lerning  React-16</h1>
         <h3>This is so cool!!!</h3>
         {/* dont use paranthesis it will execute function immediatelty after rendering */}
-        <button onClick={this.switchNameHandler}>Switch Name</button>
-        <Person name={this.state.persons[0].name} age={this.state.persons[0].age}/>
-        <Person name={this.state.persons[1].name} age={this.state.persons[1].age}>My Hobbies: Football</Person>
+        <button onClick={this.switchNameHandler.bind(this,"Siddhant jain")}>Switch Name</button>
+        <Person click={()=>this.switchNameHandler("Siddhant")} name={this.state.persons[0].name} age={this.state.persons[0].age}/>
+        <Person  name={this.state.persons[1].name} age={this.state.persons[1].age}>My Hobbies: Football</Person>
         <Person name={this.state.persons[2].name} age={this.state.persons[2].age}/>
 
       </div>
