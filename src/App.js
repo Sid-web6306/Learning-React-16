@@ -34,12 +34,19 @@ class App extends Component{
     //Another Way of writing a JSX
     // return React.createElement('div',{className: 'App'},React.createElement('h1',null, 'Hello, I m learning React-16.'));
     render(){
+      //inline Styling 
+      const style = {
+        backgroundColor:'White',
+        padding:'10px',
+        border:'1px solid blue',
+        boxShadow:'0px 2px 5px #ccc'
+      }
     return(
       <div className="App">
         <h1>Hello , I m lerning  React-16</h1>
         <h3>This is so cool!!!</h3>
         {/* dont use paranthesis it will execute function immediatelty after rendering */}
-        <button onClick={this.switchNameHandler.bind(this,"Siddhant jain")}>Switch Name</button>
+        <button style={style} onClick={this.switchNameHandler.bind(this,"Siddhant jain")}>Switch Name</button>
         <Person  click={()=>this.switchNameHandler("Siddhant")} name={this.state.persons[0].name} age={this.state.persons[0].age}/>
         <Person changes = {this.nameChangeHandler} name={this.state.persons[1].name} age={this.state.persons[1].age}>My Hobbies: Football</Person>
         <Person name={this.state.persons[2].name} age={this.state.persons[2].age}/>
