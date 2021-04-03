@@ -1,5 +1,5 @@
-import React, { Component, useState } from 'react';
-import Person from "./components/Person/Person";
+import React, { Component } from 'react';
+import Person from "./components/Person/Person.js";
 import './App.css';
 
 //Stateful Component or smart Component or container Component
@@ -7,30 +7,51 @@ class App extends Component{
 
   state={
         persons:[
-          {name:"Siddhant",age:23},{name:"Joe", age:40},{name:"Mili",age:12}
+          {id:'1',name:"Siddhant",age:23},
+          {id:'2',name:"Joe", age:40},
+          {id:'3',name:"Mili",age:12}
         ],
         otherState:"Some other value",
         showPersons: false
       }
     
-    
+    deleteHandler = (index)=>{
+      const persons = [...this.state.persons];
+      persons.splice(index,1);
+      this.setState({
+        persons:persons
+      })
+    }
+
       switchNameHandler = (newName) => {
         
         // console.log("Was clicked correctly");
         //DONT DIRECTLY CHANGE THE STATE OBJECT
         this.setState({
           persons:[
-            {name:newName,age:23},{name:"Rose", age:40},{name:"Monica",age:33}
+            {id:'1',name:newName,age:23},
+            {id:'2',name:"Rose", age:40},
+            {id:'3',name:"Monica",age:33}
           ]
         });
       }
 
 
-      nameChangeHandler = (event) =>{
+      nameChangeHandler = (event,id) =>{
+
+        const personIndex= this.state.persons.findIndex(p=>{
+          return p.id===id;
+        })
+
+        const person = {...this.state.persons[personIndex]};
+
+        person.name = event.target.value;
+        const persons = [...this.state.persons];
+
+        persons[personIndex] = person;
+
         this.setState({
-          persons:[
-            {name:"Siddhant",age:23},{name:event.target.value, age:40},{name:"Mili",age:33}
-          ]
+          persons:persons
         });
       }
 
@@ -52,16 +73,25 @@ class App extends Component{
         margin: '10px',
         font:'inherit'
       }
+      console.log(this.state);
        let persons = (<button style={style} onClick={this.toggleChangeHandler}>Show Persons</button>);
       if(this.state.showPersons){
-        persons = (
-        <div>
-          <button style={style} onClick ={this.toggleChangeHandler}>Hide Persons</button>
-          <Person  click={()=>this.switchNameHandler("Siddhant")} name={this.state.persons[0].name} age={this.state.persons[0].age}/>
-          <Person changes = {this.nameChangeHandler} name={this.state.persons[1].name} age={this.state.persons[1].age}>My Hobbies: Football</Person>
-          <Person name={this.state.persons[2].name} age={this.state.persons[2].age}/>
-        </div>
-        );
+        
+        persons =( 
+          <div>
+            <button style={style} onClick ={this.toggleChangeHandler}>Hide Persons</button>
+            {this.state.persons.map((person,index) => {
+             return(
+              <Person 
+                changes={(event)=>this.nameChangeHandler(event,person.id)}
+                click={()=>this.deleteHandler(index)}
+                name ={person.name}
+                age = {person.age}
+                key={person.id}
+              />)
+            })}
+          </div>
+        )
       }
 
 
